@@ -60,9 +60,13 @@ namespace cis237assignment2
         /// Feel free to change the return type if you like, or pass in parameters that you might need.
         /// This is only a very small starting point.
         /// </summary>
-        private void mazeTraversal()
+        private bool mazeTraversal(int x, int y, char lastMove)
         {
-            //Implement maze traversal recursive call
+            if (x == 0 || x == maze.GetLength(1) || y == 0 || y == maze.GetLength(0))
+            {
+                return true;
+            }
+            
         }
     }
 }
