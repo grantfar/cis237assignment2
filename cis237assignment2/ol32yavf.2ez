@@ -37,8 +37,7 @@ namespace cis237assignment2
             this.yStart = yStart;
             displayMaze();
             mazeTraversal(yStart, xStart, 'd');
-            Console.WriteLine("Done! Press any key to continue ");
-            Console.ReadKey();
+            displayMaze();
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
         }
