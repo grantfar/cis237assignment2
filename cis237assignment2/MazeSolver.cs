@@ -14,18 +14,12 @@ namespace cis237assignment2
     /// </summary>
     class MazeSolver
     {
-        /// <summary>
-        /// Class level memeber variable for the mazesolver class
-        /// </summary>
         char[,] maze;
         int xStart;
         int yStart;
-
-        /// <summary>
-        /// Default Constuctor to setup a new maze solver.
-        /// </summary>
         public MazeSolver()
-        {}
+        {
+        }
 
 
         /// <summary>
@@ -41,8 +35,23 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
+            displayMaze();
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
+        }
+
+
+        private void displayMaze()
+        {
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int k = 0; k < maze.GetLength(1); k++)
+                {
+                    Console.Write(maze[i,k]);
+                }
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
         }
 
 

@@ -59,26 +59,17 @@ namespace cis237assignment2
 
         }
 
-        /// <summary>
-        /// This method will take in a 2 dimensional char array and return
-        /// a char array maze that is flipped along the diagonal, or in mathematical
-        /// terms, transposed.
-        /// ie. if the array looks like 1, 2, 3
-        ///                             4, 5, 6
-        ///                             7, 8, 9
-        /// The returned result will be:
-        ///                             1, 4, 7
-        ///                             2, 5, 8
-        ///                             3, 6, 9
-        /// The current return statement is just a placeholder so the program
-        /// doesn't complain about no return value.
-        /// </summary>
-        /// <param name="mazeToTranspose"></param>
-        /// <returns>transposedMaze</returns>
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
-            //Write code her to create a transposed maze.
-            return new char[1, 1];
+            char[,] transposedMaze = new char[mazeToTranspose.GetLength(1), mazeToTranspose.GetLength(0)];
+            for (int i = 0; i < mazeToTranspose.GetLength(0); i++)
+            {
+                for (int k = 0; k < mazeToTranspose.GetLength(1); k++)
+                {
+                    transposedMaze[k, i] = mazeToTranspose[i, k];
+                }
+            }
+            return transposedMaze;
         }
     }
 }
