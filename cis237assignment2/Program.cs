@@ -24,21 +24,19 @@ namespace cis237assignment2
 
             ///<summary>
             /// The first maze that needs to be solved.
-            /// Note: You may want to make a smaller version to test and debug with.
-            /// You don't have to, but it might make your life easier.
             /// </summary>
             char[,] maze1 = 
             { { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
-            { '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '#' },
-            { '#', '.', '#', '.', '#', '.', '#', '#', '#', '#', '.', '#' },
-            { '#', '#', '#', '.', '#', '.', '.', '.', '.', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '#', '#', '#', '.', '#', '.', '.' },
-            { '#', '#', '#', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '.', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '#', '.', '#', '.', '#', '.', '#', '.', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '#' },
-            { '#', '#', '#', '#', '#', '#', '.', '#', '#', '#', '.', '#' },
-            { '#', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '#' },
+            { '#', '·', '·', '·', '#', '·', '·', '·', '·', '·', '·', '#' },
+            { '#', '·', '#', '·', '#', '·', '#', '#', '#', '#', '·', '#' },
+            { '#', '#', '#', '·', '#', '·', '·', '·', '·', '#', '·', '#' },
+            { '#', '·', '·', '·', '·', '#', '#', '#', '·', '#', '·', '·' },
+            { '#', '#', '#', '#', '·', '#', '·', '#', '·', '#', '·', '#' },
+            { '#', '·', '·', '#', '·', '#', '·', '#', '·', '#', '·', '#' },
+            { '#', '#', '·', '#', '·', '#', '·', '#', '·', '#', '·', '#' },
+            { '#', '·', '·', '·', '·', '·', '·', '·', '·', '#', '·', '#' },
+            { '#', '#', '#', '#', '#', '#', '·', '#', '#', '#', '·', '#' },
+            { '#', '·', '·', '·', '·', '·', '·', '#', '·', '·', '·', '#' },
             { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' } };
 
             /// <summary>
@@ -48,6 +46,7 @@ namespace cis237assignment2
 
             /// <summary>
             /// Tell the instance to solve the first maze with the passed maze, and start coordinates.
+            /// Cloned to prevent maze 2 from being pre-solved
             /// </summary>
             mazeSolver.SolveMaze((char[,])maze1.Clone(), X_START, Y_START);
 
@@ -59,6 +58,11 @@ namespace cis237assignment2
 
         }
 
+        /// <summary>
+        /// transposes any char array including non square ones
+        /// </summary>
+        /// <param name="mazeToTranspose"></param>
+        /// <returns></returns>
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
             char[,] transposedMaze = new char[mazeToTranspose.GetLength(1), mazeToTranspose.GetLength(0)];

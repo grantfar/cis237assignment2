@@ -8,9 +8,6 @@ namespace cis237assignment2
 {
     /// <summary>
     /// This class is used for solving a char array maze.
-    /// You might want to add other methods to help you out.
-    /// A print maze method would be very useful, and probably neccessary to print the solution.
-    /// If you are real ambitious, you could make a seperate class to handle that.
     /// </summary>
     class MazeSolver
     {
@@ -24,8 +21,6 @@ namespace cis237assignment2
 
         /// <summary>
         /// This is the public method that will allow someone to use this class to solve the maze.
-        /// Feel free to change the return type, or add more parameters if you like, but it can be done
-        /// exactly as it is here without adding anything other than code in the body.
         /// </summary>
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
@@ -35,7 +30,9 @@ namespace cis237assignment2
             this.maze = maze;
             this.xStart = xStart;
             this.yStart = yStart;
+            //display the maze before it is solved
             displayMaze();
+            //start the maze solver at the starting point;
             mazeTraversal(yStart, xStart, 'd');
             Console.WriteLine("Done! Press any key to continue ");
             Console.ReadKey();
@@ -43,7 +40,9 @@ namespace cis237assignment2
             //Do work needed to use mazeTraversal recursive call and solve the maze.
         }
 
-
+        /// <summary>
+        /// displays the maze in the console
+        /// </summary>
         private void displayMaze()
         {
             for (int i = 0; i < maze.GetLength(0); i++)
@@ -59,33 +58,54 @@ namespace cis237assignment2
 
 
         /// <summary>
-        /// This should be the recursive method that gets called to solve the maze.
-        /// Feel free to change the return type if you like, or pass in parameters that you might need.
-        /// This is only a very small starting point.
+        /// Solves a maze
+        /// compass rose:
+        ///     n
+        ///     ↑ 
+        /// w ←   → e
+        ///     ↓
+        ///     s
+        /// n = y + 1
+        /// s = y - 1
+        /// e = x + 1
+        /// w = x - 1
+        /// return values:
+        /// -1 = hit a wall
+        ///  0 = dead end
+        ///  1 = reached the end
         /// </summary>
         private int mazeTraversal(int y, int x, char lastMove)
         {
             int branchHolderInt;
+            //if at a wall
             if (maze[y, x] == '#')
             {
                 return -1;
             }
+            //show that the solver has been at current cordenents
             maze[y, x] = 'x';
             displayMaze();
+            //if at the end
             if (x == 0 || x == maze.GetLength(1) - 1 || y == 0 || y == maze.GetLength(0) - 1)
             {
                 return 1;
             }
+            //switch prevents backtracking without knowing its backtracking;
             switch(lastMove)
             {
+                //South
+                //each case trys a branch for each of the directions besides its oppisate direction
                 case 's':
+                    //trys east branch
                     branchHolderInt = mazeTraversal(y, x + 1, 'e');
                     if(branchHolderInt == 1)
                     {
                         return 1;
                     }
+                    //if dead end
                     if(branchHolderInt == 0)
                     {
+                        //backtrack
                         maze[y, x + 1] = '0';
                         displayMaze();
                     }
@@ -109,7 +129,10 @@ namespace cis237assignment2
                         maze[y, x - 1] = '0';
                         displayMaze();
                     }
+                    //none of branches worked backtrack
                     return 0;
+
+                //West
                 case 'w':
                     branchHolderInt = mazeTraversal(y + 1, x, 'n');
                     if (branchHolderInt == 1)
@@ -142,6 +165,8 @@ namespace cis237assignment2
                         displayMaze();
                     }
                     return 0;
+
+                //North
                 case 'n':
                     branchHolderInt = mazeTraversal(y + 1, x, 'n');
                     if (branchHolderInt == 1)
@@ -174,6 +199,8 @@ namespace cis237assignment2
                         displayMaze();
                     }
                     return 0;
+
+                //East
                 case 'e':
                     branchHolderInt = mazeTraversal(y + 1, x, 'n');
                     if (branchHolderInt == 1)
@@ -206,6 +233,8 @@ namespace cis237assignment2
                         displayMaze();
                     }
                     return 0;
+
+                //only for the start
                 default:
                     branchHolderInt = mazeTraversal(y + 1, x, 'n');
                     if (branchHolderInt == 1)
